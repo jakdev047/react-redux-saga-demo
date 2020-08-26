@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { ListGroup, Button, ListGroupItem } from 'reactstrap'
 
-const UserList = ({users}) => {
+const UserList = ({users,onDeleteUser}) => {
     return (
         <Fragment>
             <ListGroup>
@@ -30,7 +30,7 @@ const UserList = ({users}) => {
                                         {user.firstName} {user.lastName}
                                     </div>
                                     <div>
-                                        <Button outline color="danger">Delete</Button>
+                                        <Button outline color="danger" onClick={()=>onDeleteUser(user.id)}>Delete</Button>
                                     </div>
                                 </section>
                             </ListGroupItem>

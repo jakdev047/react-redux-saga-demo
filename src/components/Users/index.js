@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import {getUserRequest,createUserRequest} from '../../actions/user';
+import {getUserRequest,createUserRequest,deleteUserRequest} from '../../actions/user';
 import UserList from '../UserList';
 import NewUserForm from '../NewUserForm';
 
@@ -17,6 +17,10 @@ class Users extends Component {
             firstName,
             lastName
         })
+    };
+
+    handleDeleteUserClick = (userId) => {
+        this.props.deleteUserRequest(userId);
     }
 
     render(){
@@ -25,7 +29,7 @@ class Users extends Component {
             <Fragment>
                 <div style={{padding:'20px',margin:'0 auto',maxWidth: '600px'}}>
                     <NewUserForm onSubmit={this.handleSubmit}/>
-                    <UserList users={users.items}/>
+                    <UserList users={users.items} onDeleteUser={this.handleDeleteUserClick}/>
                 </div>
             </Fragment>
         )
@@ -33,4 +37,4 @@ class Users extends Component {
     
 }
 
-export default connect(({users})=>({users}),{getUserRequest,createUserRequest})(Users);
+export default connect(({users})=>({users}),{getUserRequest,createUserRequest,deleteUserRequest})(Users);
