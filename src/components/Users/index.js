@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import {getUserRequest} from '../../actions/user';
+import {getUserRequest,createUserRequest} from '../../actions/user';
 import UserList from '../UserList';
 import NewUserForm from '../NewUserForm';
 
@@ -13,7 +13,10 @@ class Users extends Component {
     }
 
     handleSubmit = ({firstName,lastName}) => {
-        console.log(firstName,lastName)
+        this.props.createUserRequest({
+            firstName,
+            lastName
+        })
     }
 
     render(){
@@ -30,4 +33,4 @@ class Users extends Component {
     
 }
 
-export default connect(({users})=>({users}),{getUserRequest})(Users);
+export default connect(({users})=>({users}),{getUserRequest,createUserRequest})(Users);

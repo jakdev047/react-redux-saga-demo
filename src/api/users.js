@@ -6,4 +6,11 @@ export const getUsers = () => {
             limit: 1000
         }
     })
-}
+};
+
+export const createUser = ({firstName,lastName}) => {
+    return axios.post('/users',{
+        firstName,
+        lastName
+    });
+};
